@@ -60,20 +60,19 @@ Ext.onReady(function() {
 
 		var username = document.getElementById('username').value;
 		if (username.length < 1) {
-			username = "YOUR-USERNAME-HERE";
+			username = "&lt;YOUR-USERNAME-HERE&gt;";
 			document.getElementById('username').focus();
 		}
+		Ext.select('.username').update(username);
 		var templateLines = [
 			'git clone --recursive git://git.typo3.org/{projectPath} {projectName}',
 			'cd {projectName}',
 			'scp -p -P 29418 {username}@review.typo3.org:hooks/commit-msg .git/hooks/',
-			'git config remote.origin.pushurl ssh://{username}@review.typo3.org:29418/{projectPath}',
 			'git config remote.origin.push HEAD:refs/for/master'
 		];
 		if (currentProject.type == 'Distribution' || currentProject.type == 'Application') {
 			templateLines.push(
 				'git submodule foreach \'scp -p -P 29418 {username}@review.typo3.org:hooks/commit-msg .git/hooks/\'',
-				'git submodule foreach \'git config remote.origin.pushurl ssh://review.typo3.org:29418/FLOW3/Packages/`basename $path`.git\'',
 				'git submodule foreach \'git config remote.origin.push HEAD:refs/for/master\'',
 				'git submodule foreach \'git checkout master; git pull\''
 			)
@@ -85,8 +84,11 @@ Ext.onReady(function() {
 				disableFormats: true
 			}
 		);
-		template.append('output', {projectName: currentProject.name, projectPath: currentProject.path, username: username});
-		Ext.fly('link').update('link to this page: ' + window.location.href.substr(0, window.location.href.length - window.location.hash.length) + '#' + currentProject.path);
+		var projectName = currentProject.type == 'Package' ? 'TYPO3.' + currentProject.name : currentProject.name;
+		template.append('output', {projectName: projectName, projectPath: currentProject.path, username: username});
+		window.location.hash = currentProject.path;
+		var projectUrl = window.location.href.substr(0, window.location.href.length - window.location.hash.length) + '#' + currentProject.path;
+		Ext.fly('link').update('link to this page: <a href="' + projectUrl + '"> ' + projectUrl + '</a>');
 	}
 	grid.on('rowclick', function(grid, rowIndex, e) {
 		currentProject = grid.store.getAt(rowIndex).data;

@@ -18,7 +18,11 @@ h2 {
 	font-size: 15px;
 }
 
-input, textarea {
+a {
+	color: #000;
+}
+
+input, textarea, code {
 	padding: 3px;
 	background: white;
 	font-family: arial, sans-serif;
@@ -34,6 +38,14 @@ textarea {
 	font-size: 13px;
 	line-height: 1.6em;
 	width: 650px;
-	height: 200px;
+	height: 160px;
 	white-space: nowrap;
+}
+code {
+	display: block;
+	width: 640px;
+}
+
+#link {
+	margin-top: 5px;
 }
