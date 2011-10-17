@@ -1,12 +1,14 @@
 <?php
 
 class Project {
-	const PROJECT_TYPE_UNKNOWN = 'Unknown';
+	const PROJECT_TYPE_UNKNOWN = 'Miscellaneous';
 	const PROJECT_TYPE_EXTENSION = 'Extension';
 	const PROJECT_TYPE_CORE_EXTENSION = 'Core Extension';
 	const PROJECT_TYPE_PACKAGE = 'Package';
 	const PROJECT_TYPE_DISTRIBUTION = 'Distribution';
 	const PROJECT_TYPE_APPLICATION = 'Application';
+	const PROJECT_TYPE_SITE = 'Site';
+	const PROJECT_TYPE_DOCUMENTATION = 'Documentation';
 
 	/**
 	 * one of PROJECT_TYPE_* constants

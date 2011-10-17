@@ -70,7 +70,7 @@ Ext.onReady(function() {
 			'scp -p -P 29418 {username}@review.typo3.org:hooks/commit-msg .git/hooks/',
 			'git config remote.origin.push HEAD:refs/for/master'
 		];
-		if (currentProject.type == 'Distribution' || currentProject.type == 'Application') {
+		if (currentProject.type == 'Distribution' || currentProject.type == 'Application' || currentProject.type == 'Site') {
 			templateLines.push(
 				'git submodule foreach \'scp -p -P 29418 {username}@review.typo3.org:hooks/commit-msg .git/hooks/\'',
 				'git submodule foreach \'git config remote.origin.push HEAD:refs/for/master\'',
@@ -84,7 +84,10 @@ Ext.onReady(function() {
 				disableFormats: true
 			}
 		);
-		var projectName = currentProject.type == 'Package' ? 'TYPO3.' + currentProject.name : currentProject.name;
+		var projectName = currentProject.name;
+		if (currentProject.type == 'Package' && currentProject.name.indexOf('.') == -1) {
+			projectName = 'TYPO3.' + projectName;
+		}
 		template.append('output', {projectName: projectName, projectPath: currentProject.path, username: username});
 		window.location.hash = currentProject.path;
 		var projectUrl = window.location.href.substr(0, window.location.href.length - window.location.hash.length) + '#' + currentProject.path;
