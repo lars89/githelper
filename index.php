@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="css/main.css" />
 	<script type="text/javascript" src="js/extjs/adapter/ext/ext-base.js"></script>
 	<script type="text/javascript" src="js/extjs/ext-all.js"></script>
-	<script type="text/javascript" src="js/main.js?1318887521"></script>
+	<script type="text/javascript" src="js/main.js?1319107220"></script>
 </head>
 <body>
 <h1>Git Helper</h1>

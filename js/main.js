@@ -84,11 +84,7 @@ Ext.onReady(function() {
 				disableFormats: true
 			}
 		);
-		var projectName = currentProject.name;
-		if (currentProject.type == 'Package' && currentProject.name.indexOf('.') == -1) {
-			projectName = 'TYPO3.' + projectName;
-		}
-		template.append('output', {projectName: projectName, projectPath: currentProject.path, username: username});
+		template.append('output', {projectName: currentProject.name, projectPath: currentProject.path, username: username});
 		window.location.hash = currentProject.path;
 		var projectUrl = window.location.href.substr(0, window.location.href.length - window.location.hash.length) + '#' + currentProject.path;
 		Ext.fly('link').update('link to this page: <a href="' + projectUrl + '"> ' + projectUrl + '</a>');
