@@ -46,7 +46,8 @@ Ext.onReady(function() {
 		view: new Ext.grid.GroupingView({
 			forceFit: true,
 			groupTextTpl: '{text} ({[values.rs.length]} {[values.rs.length > 1 ? "Projects" : "Project"]})',
-			showGroupName: false
+			showGroupName: false,
+			startCollapsed: true
 		}),
 		renderTo: 'projectGrid',
 		width: 650,
